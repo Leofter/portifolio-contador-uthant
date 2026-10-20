@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Mail, Scale } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import { portfolioService } from '@/services/portfolioService'
 import { FigmaSeparator } from '@/components/FigmaDecorations'
 
@@ -13,7 +13,13 @@ export function Hero() {
         return <Mail className="w-7 h-7 text-black" strokeWidth={2.2} />
       case 'scale':
       default:
-        return <Scale className="w-7 h-7 text-black" strokeWidth={2.2} />
+        return (
+          <img
+            src="/logo/contabilidade-logo.png"
+            alt="Logo Contabilidade"
+            className="w-7 h-7 object-contain"
+          />
+        )
     }
   }
 

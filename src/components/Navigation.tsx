@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Scale, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { useScrollVisibility } from '@/hooks/useScrollVisibility'
 import { portfolioService } from '@/services/portfolioService'
@@ -55,7 +55,16 @@ export function Navigation() {
                 : 'border-black text-black bg-transparent group-hover:bg-black group-hover:text-white'
             )}
           >
-            <Scale className="w-5 h-5" />
+            <img
+              src="/logo/contabilidade-logo.png"
+              alt="Logo Contabilidade"
+              className={cn(
+                'w-5 h-5 object-contain transition-all duration-300',
+                isScrolled
+                  ? 'invert group-hover:invert-0'
+                  : 'group-hover:invert'
+              )}
+            />
           </div>
           <div className="flex flex-col">
             <span
@@ -117,7 +126,11 @@ export function Navigation() {
             onClick={() => scrollToSection('home')}
             className="flex items-center gap-2.5 text-white"
           >
-            <Scale className="w-5 h-5 text-white" />
+            <img
+              src="/logo/contabilidade-logo.png"
+              alt="Logo Contabilidade"
+              className="w-5 h-5 object-contain invert"
+            />
             <span className="font-montserrat font-bold text-xs tracking-[0.2em] uppercase">
               Uthant Magalhães
             </span>

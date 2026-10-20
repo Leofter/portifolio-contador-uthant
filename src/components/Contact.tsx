@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronsUp, Mail, Scale, CheckCircle2 } from 'lucide-react'
+import { ChevronsUp, Mail, CheckCircle2 } from 'lucide-react'
 import { portfolioService } from '@/services/portfolioService'
 import {
   SectionBoxHeader,
@@ -114,7 +114,13 @@ export function Contact() {
         return <Mail className="w-5 h-5" />
       case 'scale':
       default:
-        return <Scale className="w-5 h-5" />
+        return (
+          <img
+            src="/logo/contabilidade-logo.png"
+            alt="Logo Contabilidade"
+            className="w-5 h-5 object-contain invert group-hover:invert-0 transition-all duration-300"
+          />
+        )
     }
   }
 
@@ -276,7 +282,7 @@ export function Contact() {
               key={link.id}
               href={link.href}
               aria-label={link.label}
-              className="w-[34px] h-[34px] border border-white/30 flex items-center justify-center text-white/90 hover:bg-white hover:text-black transition-all duration-300"
+              className="group w-[34px] h-[34px] border border-white/30 flex items-center justify-center text-white/90 hover:bg-white hover:text-black transition-all duration-300"
             >
               {renderFooterSocialIcon(link.iconType)}
             </a>

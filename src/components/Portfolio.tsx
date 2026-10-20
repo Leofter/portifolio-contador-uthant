@@ -1,7 +1,6 @@
 import { useState, MouseEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Scale,
   Landmark,
   FileSpreadsheet,
   ShieldAlert,
@@ -100,7 +99,13 @@ export function Portfolio() {
     }
     switch (variant) {
       case 'scales':
-        return <Scale {...iconProps} />
+        return (
+          <img
+            src="/logo/contabilidade-logo.png"
+            alt=""
+            className="w-28 h-28 object-contain invert opacity-10 group-hover:scale-110 transition-transform duration-700"
+          />
+        )
       case 'columns':
         return <Landmark {...iconProps} />
       case 'ledger':

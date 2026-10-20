@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FileText, Scale, ShieldCheck } from 'lucide-react'
+import { FileText, ShieldCheck } from 'lucide-react'
 import { portfolioService } from '@/services/portfolioService'
 import {
   SectionBoxHeader,
@@ -29,7 +29,13 @@ export function About() {
       case 'consulting':
         return <FileText className="w-14 h-14 text-black/15" strokeWidth={1.5} />
       case 'litigation':
-        return <Scale className="w-14 h-14 text-black/15" strokeWidth={1.5} />
+        return (
+          <img
+            src="/logo/contabilidade-logo.png"
+            alt=""
+            className="w-14 h-14 object-contain opacity-15"
+          />
+        )
       case 'planning':
         return (
           <ShieldCheck className="w-14 h-14 text-black/15" strokeWidth={1.5} />
