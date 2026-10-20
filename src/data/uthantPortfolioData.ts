@@ -41,7 +41,7 @@ export const uthantPortfolioData: PortfolioDatabase = {
     role: 'Contador • +30 Anos na Área',
     experienceBadge: '+30 ANOS NA ÁREA',
     currentFirmBadge: 'FORMADO NA FUNDAÇÃO VISCONDE DE CAIRU',
-    heroImage: '/img/arthur.png',
+    heroImage: '/img/uthant.png',
     photoCaption: 'Uthant Torres Magalhães — Soluções Contábeis',
     monogram: 'UTM',
   },
@@ -573,5 +573,3 @@ export const uthantPortfolioData: PortfolioDatabase = {
     },
   },
 }
-
-export const arthurPortfolioData = uthantPortfolioData

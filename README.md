@@ -18,11 +18,12 @@ Portfólio profissional desenvolvido para o contador **Uthant Torres Magalhães*
 ```text
 portifolio-contador-uthant/
 ├── index.html                           # Entrada HTML e fontes Google (Montserrat, Raleway, Open Sans, Varela, Nunito)
+├── public/img/uthant.png                # Imagem oficial de capa (Hero Section)
 ├── src/
 │   ├── domain/
 │   │   └── types/portfolio.ts           # 1. Camada de Domínio (Interfaces e contratos TypeScript)
 │   ├── data/
-│   │   └── arthurPortfolioData.ts       # 2. Camada de Dados (Repositório estruturado de Uthant Torres Magalhães)
+│   │   └── uthantPortfolioData.ts       # 2. Camada de Dados (Repositório estruturado de Uthant Torres Magalhães)
 │   ├── services/
 │   │   └── portfolioService.ts          # 3. Camada de Aplicação / Serviço (Seletores para a UI)
 │   ├── hooks/

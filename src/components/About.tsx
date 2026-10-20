@@ -146,7 +146,7 @@ export function About() {
           )}
         </div>
 
-        {/* Quick Lawyer Profile Cards (Ficha Resumo) */}
+        {/* Quick Accountant Profile Cards (Ficha Resumo) */}
         <motion.div
           {...fadeInUp}
           className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-16 pt-12 border-t border-black/15"

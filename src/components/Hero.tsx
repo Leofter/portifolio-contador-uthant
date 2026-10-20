@@ -110,7 +110,7 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* RIGHT COLUMN — Lawyer Portrait (Root image arthur.png) */}
+        {/* RIGHT COLUMN — Accountant Portrait (Root image uthant.png) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}

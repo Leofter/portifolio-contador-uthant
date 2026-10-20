@@ -207,7 +207,7 @@ export function Contact() {
           ))}
         </div>
 
-        {/* Copyright (@2026 Arthur Rodrigo Couto All Rights Reserved - Nunito 700 18px) */}
+        {/* Copyright (@2026 Uthant Torres Magalhães All Rights Reserved - Nunito 700 18px) */}
         <p className="font-nunito font-bold text-sm sm:text-[18px] leading-[25px] text-center text-white/90">
           @{new Date().getFullYear()} {contactData.footer.copyrightOwner}{' '}
           <span className="font-normal text-white/75">

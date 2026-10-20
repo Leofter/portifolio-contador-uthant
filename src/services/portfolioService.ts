@@ -1,4 +1,4 @@
-import { uthantPortfolioData } from '@/data/arthurPortfolioData'
+import { uthantPortfolioData } from '@/data/uthantPortfolioData'
 import {
   AboutData,
   ContactData,
