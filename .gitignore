@@ -1,0 +1,83 @@
+# =============================================================================
+# BANCO DE INFORMAÇÕES PRIVADO DO CONTADOR (NÃO VERSIONAR)
+# =============================================================================
+BANCO_DE_INFORMACOES.md
+DADOS_CONTADOR.md
+DADOS_ADVOGADO.md
+*.privado.md
+*.private.md
+
+# =============================================================================
+# PREVENÇÃO DE VAZAMENTO DE DADOS DA MÁQUINA E CREDENCIAIS
+# =============================================================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+*.pfx
+*.asc
+*.gpg
+id_rsa*
+id_ed25519*
+known_hosts
+secrets.*
+.secrets/
+config.local.*
+credentials.*
+service-account*.json
+*.sqlite
+*.sqlite3
+*.db
+
+# Arquivos de sistema operacional e metadados locais (macOS / Windows / Linux)
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Diretórios de assistentes de IA, editores e IDEs locais
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.gemini/
+.claude/
+.cursor/
+.windsurf/
+.aider*
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Logs e diagnósticos
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependências e diretórios de build
+node_modules/
+dist/
+dist-ssr/
+build/
+.vite/
+*.local
+
+# Arquivos temporários e backups
+*.bak
+*.tmp
+*.temp
+*~
