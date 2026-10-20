@@ -8,7 +8,6 @@ export const uthantPortfolioData: PortfolioDatabase = {
   navItems: [
     { id: 'about', label: 'Sobre mim' },
     { id: 'skills', label: 'Especialidades' },
-    { id: 'work', label: 'Principais Funções' },
     { id: 'portfolio', label: 'Soluções' },
     { id: 'contact', label: 'CONTATO', isCta: true },
   ],
@@ -21,15 +20,9 @@ export const uthantPortfolioData: PortfolioDatabase = {
       iconType: 'mail',
     },
     {
-      id: 'linkedin',
-      label: 'LinkedIn',
-      href: '#contact',
-      iconType: 'linkedin',
-    },
-    {
       id: 'contabil',
       label: 'Soluções Contábeis',
-      href: '#work',
+      href: '#portfolio',
       iconType: 'scale',
     },
   ],
@@ -38,9 +31,9 @@ export const uthantPortfolioData: PortfolioDatabase = {
     greeting: 'Olá, eu sou',
     fullName: 'Uthant Torres Magalhães',
     subtitleBelowName: 'Soluções Contábeis',
-    role: 'Contador • +30 Anos na Área',
+    role: 'Contador • A mais de 30',
     experienceBadge: '+30 ANOS NA ÁREA',
-    currentFirmBadge: 'FORMADO NA FUNDAÇÃO VISCONDE DE CAIRU',
+    currentFirmBadge: '',
     heroImage: '/img/uthant.png',
     photoCaption: 'Uthant Torres Magalhães — Soluções Contábeis',
     monogram: 'UTM',
@@ -61,7 +54,7 @@ export const uthantPortfolioData: PortfolioDatabase = {
     sectionTitle: 'SOBRE MIM',
     introParagraph:
       'Uthant Torres Magalhães é Contador formado pela Fundação Visconde de Cairu, com mais de 30 anos na área contábil, fiscal, societária e de departamento pessoal. Sua atuação une tradição, precisão técnica e atendimento próximo na abertura, baixa e regularização de empresas, apuração de impostos em dia ou em atraso e planejamento tributário.',
-    exploreLabel: 'EXPLORAR FUNÇÕES',
+    exploreLabel: 'EXPLORAR SOLUÇÕES',
     services: [
       {
         id: 'abertura-regularizacao',
@@ -88,38 +81,7 @@ export const uthantPortfolioData: PortfolioDatabase = {
         isPlaceholder: false,
       },
     ],
-    stats: [
-      {
-        label: 'EXPERIÊNCIA CONSOLIDADA',
-        value: '+30 Anos na Área',
-        detail: 'Mais de três décadas de sólida atuação em Ciências Contábeis',
-      },
-      {
-        label: 'FORMAÇÃO ACADÊMICA',
-        value: 'Fundação Visconde de Cairu',
-        detail: 'Graduado por uma das mais tradicionais instituições contábeis do país',
-      },
-      {
-        label: 'SOCIETÁRIO EMPRESARIAL',
-        value: 'Abertura, Baixa e Regularização',
-        detail: 'Contrato social, CNPJ, alvarás e registros nos órgãos competentes',
-      },
-      {
-        label: 'GESTÃO DE IMPOSTOS',
-        value: 'Na Data e em Atraso',
-        detail: 'Simples Nacional, MEI, Lucro Presumido, ICMS, IPI, PIS, COFINS, IRPJ e CSLL',
-      },
-      {
-        label: 'DEPARTAMENTO PESSOAL',
-        value: 'Folha, eSocial, FGTS e INSS',
-        detail: 'Cálculos de pró-labore, férias, 13º salário, encargos e rescisões',
-      },
-      {
-        label: 'DECLARAÇÕES & PASSIVOS',
-        value: 'IRPF, IRPJ e Parcelamentos',
-        detail: 'DEFIS, DCTFWeb, Balanço Patrimonial, DRE e redução legal de impostos',
-      },
-    ],
+    stats: [],
   },
 
   skills: {
@@ -293,144 +255,10 @@ export const uthantPortfolioData: PortfolioDatabase = {
 
   work: {
     sectionTitle: 'ATUAÇÃO & FUNÇÕES',
-    sectionSubtitle:
-      '+30 anos na área contábil • Formado pela Fundação Visconde de Cairu — Conheça as principais funções e especialidades em Soluções Contábeis',
-    experienceSummaryBadge: '+30 ANOS NA ÁREA • FUNDAÇÃO VISCONDE DE CAIRU',
+    sectionSubtitle: '',
+    experienceSummaryBadge: '+30 ANOS NA ÁREA',
     educationBadge: 'GRADUADO PELA FUNDAÇÃO VISCONDE DE CAIRU',
-    experiences: [
-      {
-        id: 'abertura-encerramento-empresas',
-        stepNumber: '01',
-        role: 'Contrato Social, CNPJ, Alvarás e Regularização',
-        organization: 'Abertura e Encerramento de Empresas',
-        location: 'Atuação Societária e Regularização Empresarial',
-        period: '+30 Anos na Área Contábil',
-        durationBadge: 'SOCIETÁRIO',
-        isCurrent: true,
-        isPlaceholder: false,
-        description:
-          'Cuida do contrato social, CNPJ, alvarás e registros nos órgãos competentes, garantindo segurança jurídica e agilidade em todas as etapas societárias.',
-        specialtyHighlight:
-          'Especialidade em destaque: Abertura, baixa (encerramento) e regularização completa de empresas perante Receita Federal, Junta Comercial, Prefeitura e Estado.',
-        tags: [
-          'Abertura de Empresas',
-          'Baixa de Empresas',
-          'Regularização',
-          'Contrato Social & CNPJ',
-          'Alvarás',
-        ],
-      },
-      {
-        id: 'apuracao-impostos',
-        stepNumber: '02',
-        role: 'Simples Nacional, MEI, Lucro Presumido e Tributos',
-        organization: 'Apuração de Impostos (Na Data e em Atraso)',
-        location: 'Gestão Fiscal e Tributária Completa',
-        period: '+30 Anos na Área Contábil',
-        durationBadge: 'IMPOSTOS',
-        isCurrent: true,
-        isPlaceholder: false,
-        description:
-          'Calcula e emite guias de tributos como Simples Nacional, ICMS, IPI, PIS, COFINS, IRPJ e CSLL, mantendo a conformidade fiscal da empresa.',
-        specialtyHighlight:
-          'Especialidade em destaque: Impostos no Simples Nacional, MEI e Lucro Presumido, com cálculo e emissão de guias na data e em atraso, além de parcelamentos.',
-        tags: [
-          'Simples Nacional',
-          'MEI',
-          'Lucro Presumido',
-          'Na Data e em Atraso',
-          'ICMS / IPI / PIS / COFINS',
-          'IRPJ & CSLL',
-        ],
-      },
-      {
-        id: 'departamento-pessoal',
-        stepNumber: '03',
-        role: 'Folha de Pagamento, eSocial, FGTS e INSS',
-        organization: 'Departamento Pessoal',
-        location: 'Gestão Trabalhista e Previdenciária',
-        period: '+30 Anos na Área Contábil',
-        durationBadge: 'DEP. PESSOAL',
-        isCurrent: false,
-        isPlaceholder: false,
-        description:
-          'Realiza cálculos de folha de pagamento, pró-labore, férias, 13º salário e rescisões, assegurando exatidão no cumprimento da legislação trabalhista.',
-        specialtyHighlight:
-          'Especialidade em destaque: Processamento completo de Folha de Pagamento, envios ao eSocial e apuração de encargos de FGTS e INSS.',
-        tags: [
-          'Folha de Pagamento',
-          'eSocial',
-          'FGTS',
-          'INSS',
-          'Pró-labore',
-          'Férias, 13º e Rescisões',
-        ],
-      },
-      {
-        id: 'obrigacoes-acessorias',
-        stepNumber: '04',
-        role: 'DEFIS, DCTFWeb, IRPF, IRPJ e Parcelamentos',
-        organization: 'Obrigações Acessórias & Declarações',
-        location: 'Conformidade Fiscal e Prevenção de Multas',
-        period: '+30 Anos na Área Contábil',
-        durationBadge: 'DECLARAÇÕES',
-        isCurrent: false,
-        isPlaceholder: false,
-        description:
-          'Entrega declarações obrigatórias ao governo (como DEFIS e DCTFWeb) rigorosamente dentro dos prazos legais para evitar multas e pendências fiscais.',
-        specialtyHighlight:
-          'Especialidade em destaque: Elaboração e transmissão de Declarações de IRPF e IRPJ, bem como estruturação e acompanhamento de Parcelamentos.',
-        tags: [
-          'DEFIS',
-          'DCTFWeb',
-          'Declarações de IRPF',
-          'Declarações de IRPJ',
-          'Parcelamentos',
-        ],
-      },
-      {
-        id: 'relatorios-contabeis',
-        stepNumber: '05',
-        role: 'Balanço Patrimonial, DRE e Fluxo de Caixa',
-        organization: 'Relatórios Contábeis',
-        location: 'Contabilidade Gerencial e Demonstrações',
-        period: '+30 Anos na Área Contábil',
-        durationBadge: 'RELATÓRIOS',
-        isCurrent: false,
-        isPlaceholder: false,
-        description:
-          'Produz o Balanço Patrimonial, a DRE (Demonstração do Resultado do Exercício) e o fluxo de caixa para apoiar a tomada de decisão empresarial.',
-        specialtyHighlight:
-          'Formação sólida pela Fundação Visconde de Cairu somada a mais de 30 anos na área contábil garantindo relatórios claros, confiáveis e auditáveis.',
-        tags: [
-          'Balanço Patrimonial',
-          'DRE',
-          'Fluxo de Caixa',
-          'Fundação Visconde de Cairu',
-        ],
-      },
-      {
-        id: 'planejamento-tributario',
-        stepNumber: '06',
-        role: 'Economia Fiscal Legal e Enquadramento Tributário',
-        organization: 'Planejamento Tributário',
-        location: 'Consultoria Contábil Estratégica',
-        period: '+30 Anos na Área Contábil',
-        durationBadge: 'ESTRATÉGIA',
-        isCurrent: false,
-        isPlaceholder: false,
-        description:
-          'Ajuda a empresa a pagar menos impostos de forma legal, analisando o melhor regime entre MEI, Simples Nacional e Lucro Presumido.',
-        specialtyHighlight:
-          'Especialidade em destaque: Revisão de enquadramento societário e tributário, regularização de passivos e parcelamentos estratégicos.',
-        tags: [
-          'Planejamento Tributário',
-          'Redução Legal de Impostos',
-          'Simples Nacional / MEI',
-          'Lucro Presumido',
-        ],
-      },
-    ],
+    experiences: [],
   },
 
   portfolio: {
@@ -454,6 +282,25 @@ export const uthantPortfolioData: PortfolioDatabase = {
         gradientClass: 'from-[#18181b] via-[#27272a] to-[#09090b]',
         patternVariant: 'contract',
         isPlaceholder: false,
+        defaultRequestMessage:
+          'Gostaria de solicitar atendimento para abertura, baixa ou regulamentação de empresa.',
+        requestOptions: [
+          {
+            id: 'abertura',
+            label: 'ABERTURA',
+            defaultMessage: 'Gostaria de solicitar abertura de empresa.',
+          },
+          {
+            id: 'baixa',
+            label: 'BAIXA',
+            defaultMessage: 'Gostaria de solicitar baixa (encerramento) de empresa.',
+          },
+          {
+            id: 'regulamentacao',
+            label: 'REGULAMENTAÇÃO',
+            defaultMessage: 'Gostaria de solicitar regulamentação e regularização de empresa.',
+          },
+        ],
       },
       {
         id: 'case-2',
@@ -468,6 +315,30 @@ export const uthantPortfolioData: PortfolioDatabase = {
         gradientClass: 'from-[#1c1917] via-[#292524] to-[#0c0a09]',
         patternVariant: 'scales',
         isPlaceholder: false,
+        defaultRequestMessage:
+          'Gostaria de solicitar apuração e emissão de guias de impostos.',
+        requestOptions: [
+          {
+            id: 'simples-nacional',
+            label: 'SIMPLES NACIONAL',
+            defaultMessage: 'Gostaria de solicitar apuração de impostos do Simples Nacional.',
+          },
+          {
+            id: 'mei',
+            label: 'MEI',
+            defaultMessage: 'Gostaria de solicitar atendimento contábil e apuração para MEI.',
+          },
+          {
+            id: 'lucro-presumido',
+            label: 'LUCRO PRESUMIDO',
+            defaultMessage: 'Gostaria de solicitar apuração de impostos no Lucro Presumido.',
+          },
+          {
+            id: 'impostos-atraso',
+            label: 'GUIAS EM ATRASO',
+            defaultMessage: 'Gostaria de solicitar recálculo e emissão de impostos em atraso.',
+          },
+        ],
       },
       {
         id: 'case-3',
@@ -482,6 +353,25 @@ export const uthantPortfolioData: PortfolioDatabase = {
         gradientClass: 'from-[#111827] via-[#1f2937] to-[#030712]',
         patternVariant: 'ledger',
         isPlaceholder: false,
+        defaultRequestMessage:
+          'Gostaria de solicitar serviços de Departamento Pessoal.',
+        requestOptions: [
+          {
+            id: 'folha-pagamento',
+            label: 'FOLHA DE PAGAMENTO',
+            defaultMessage: 'Gostaria de solicitar cálculo e gestão de folha de pagamento.',
+          },
+          {
+            id: 'esocial-fgts-inss',
+            label: 'E-SOCIAL / FGTS / INSS',
+            defaultMessage: 'Gostaria de solicitar regularização e envio de eSocial, FGTS e INSS.',
+          },
+          {
+            id: 'ferias-13-rescisao',
+            label: 'FÉRIAS / 13º / RESCISÃO',
+            defaultMessage: 'Gostaria de solicitar cálculo de férias, 13º salário ou rescisão.',
+          },
+        ],
       },
       {
         id: 'case-4',
@@ -496,6 +386,25 @@ export const uthantPortfolioData: PortfolioDatabase = {
         gradientClass: 'from-[#27272a] via-[#18181b] to-[#09090b]',
         patternVariant: 'shield',
         isPlaceholder: false,
+        defaultRequestMessage:
+          'Gostaria de solicitar elaboração de declarações e obrigações fiscais.',
+        requestOptions: [
+          {
+            id: 'declaracao-irpf',
+            label: 'DECLARAÇÃO IRPF',
+            defaultMessage: 'Gostaria de solicitar declaração de Imposto de Renda Pessoa Física (IRPF).',
+          },
+          {
+            id: 'declaracao-irpj',
+            label: 'DECLARAÇÃO IRPJ',
+            defaultMessage: 'Gostaria de solicitar declaração de Imposto de Renda Pessoa Jurídica (IRPJ).',
+          },
+          {
+            id: 'defis-dctfweb',
+            label: 'DEFIS / DCTFWEB',
+            defaultMessage: 'Gostaria de solicitar entrega de obrigações acessórias (DEFIS / DCTFWeb).',
+          },
+        ],
       },
       {
         id: 'case-5',
@@ -510,6 +419,25 @@ export const uthantPortfolioData: PortfolioDatabase = {
         gradientClass: 'from-[#1e1b4b]/40 via-[#18181b] to-[#09090b]',
         patternVariant: 'columns',
         isPlaceholder: false,
+        defaultRequestMessage:
+          'Gostaria de solicitar elaboração de relatórios contábeis.',
+        requestOptions: [
+          {
+            id: 'balanco-patrimonial',
+            label: 'BALANÇO PATRIMONIAL',
+            defaultMessage: 'Gostaria de solicitar elaboração de Balanço Patrimonial.',
+          },
+          {
+            id: 'dre',
+            label: 'DRE',
+            defaultMessage: 'Gostaria de solicitar elaboração de DRE (Demonstração do Resultado do Exercício).',
+          },
+          {
+            id: 'fluxo-caixa',
+            label: 'FLUXO DE CAIXA',
+            defaultMessage: 'Gostaria de solicitar relatório contábil de fluxo de caixa.',
+          },
+        ],
       },
       {
         id: 'case-6',
@@ -524,6 +452,20 @@ export const uthantPortfolioData: PortfolioDatabase = {
         gradientClass: 'from-[#311010]/60 via-[#18181b] to-[#09090b]',
         patternVariant: 'court',
         isPlaceholder: false,
+        defaultRequestMessage:
+          'Gostaria de solicitar planejamento tributário ou parcelamento.',
+        requestOptions: [
+          {
+            id: 'planejamento-tributario',
+            label: 'PLANEJAMENTO TRIBUTÁRIO',
+            defaultMessage: 'Gostaria de solicitar planejamento tributário para pagar menos impostos de forma legal.',
+          },
+          {
+            id: 'parcelamentos',
+            label: 'PARCELAMENTOS',
+            defaultMessage: 'Gostaria de solicitar parcelamento e regularização de débitos fiscais.',
+          },
+        ],
       },
     ],
     footerText: 'Uthant Torres Magalhães • Soluções Contábeis com +30 anos de excelência!',
@@ -532,7 +474,8 @@ export const uthantPortfolioData: PortfolioDatabase = {
   contact: {
     sectionTitle: 'CONTATO',
     introText:
-      'Entre em contato com Uthant Torres Magalhães — Soluções Contábeis (+30 anos na área, formado na Fundação Visconde de Cairu) para abertura, baixa e regularização de empresas, folha de pagamento, impostos na data ou em atraso, declarações de IRPF/IRPJ e parcelamentos.',
+      'Entre em contato com Uthant Torres Magalhães e solucione os problemas contabeis da sua empresa',
+    highlightBannerText: 'Contabilidade com responsabilidade e experiencia',
     formPlaceholders: {
       name: 'DIGITE SEU NOME*',
       email: 'DIGITE SEU E-MAIL*',
@@ -540,32 +483,7 @@ export const uthantPortfolioData: PortfolioDatabase = {
       message: 'COMO POSSO AJUDAR SUA EMPRESA OU DECLARAÇÃO?*',
       submit: 'ENVIAR MENSAGEM',
     },
-    directContacts: [
-      {
-        label: 'PROFISSIONAL RESPONSÁVEL',
-        value: 'Uthant Torres Magalhães • Soluções Contábeis',
-        href: '#home',
-        isPlaceholder: false,
-      },
-      {
-        label: 'FORMAÇÃO & EXPERIÊNCIA',
-        value: 'Fundação Visconde de Cairu • +30 Anos na Área',
-        href: '#about',
-        isPlaceholder: false,
-      },
-      {
-        label: 'ESPECIALIDADES EMPRESARIAIS',
-        value: 'Abertura, Baixa e Regularização • Simples, MEI e Lucro Presumido',
-        href: '#skills',
-        isPlaceholder: false,
-      },
-      {
-        label: 'DP, FISCO & DECLARAÇÕES',
-        value: 'Folha, eSocial, FGTS, INSS • IRPF, IRPJ e Parcelamentos',
-        href: '#work',
-        isPlaceholder: false,
-      },
-    ],
+    directContacts: [],
     footer: {
       backToTopLabel: 'VOLTAR AO TOPO',
       copyrightOwner: 'Uthant Torres Magalhães — Soluções Contábeis',

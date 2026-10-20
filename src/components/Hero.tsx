@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Mail, Linkedin, Scale } from 'lucide-react'
+import { Mail, Scale } from 'lucide-react'
 import { portfolioService } from '@/services/portfolioService'
 import { FigmaSeparator } from '@/components/FigmaDecorations'
 
@@ -11,9 +11,8 @@ export function Hero() {
     switch (iconType) {
       case 'mail':
         return <Mail className="w-7 h-7 text-black" strokeWidth={2.2} />
-      case 'linkedin':
-        return <Linkedin className="w-7 h-7 text-black" strokeWidth={2.2} />
       case 'scale':
+      default:
         return <Scale className="w-7 h-7 text-black" strokeWidth={2.2} />
     }
   }
@@ -74,15 +73,17 @@ export function Hero() {
             {hero.subtitleBelowName}
           </p>
 
-          {/* Role / Specialty ("Contador • +30 Anos na Área") */}
+          {/* Role / Specialty ("Contador • A mais de 30") */}
           <p className="font-montserrat md:font-raleway font-semibold md:font-extrabold text-base sm:text-xl lg:text-[23px] lg:leading-[29px] text-gray-300 md:text-[#919191] max-w-xl">
             {hero.role}
           </p>
 
-          {/* Current Firm & Past Experience Sub-badge */}
-          <p className="mt-3 font-montserrat font-semibold text-xs tracking-[0.16em] uppercase text-gray-400 md:text-neutral-700">
-            {hero.currentFirmBadge}
-          </p>
+          {/* Current Firm & Past Experience Sub-badge (only rendered if non-empty) */}
+          {hero.currentFirmBadge && (
+            <p className="mt-3 font-montserrat font-semibold text-xs tracking-[0.16em] uppercase text-gray-400 md:text-neutral-700">
+              {hero.currentFirmBadge}
+            </p>
+          )}
 
           {/* Mobile Ornamental Divider (Figma separatorWhite) */}
           <div className="md:hidden w-full">

@@ -17,8 +17,8 @@ const fadeInUp = {
 export function About() {
   const about = portfolioService.getAboutData()
 
-  const scrollToWork = () => {
-    const el = document.getElementById('work')
+  const scrollToSolutions = () => {
+    const el = document.getElementById('portfolio')
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' })
     }
@@ -51,11 +51,11 @@ export function About() {
           <SectionBoxHeader title={about.sectionTitle} />
         </motion.div>
 
-        {/* Intro Paragraph (763px width in Figma) */}
+        {/* Intro Paragraph (Larger font size as requested) */}
         <motion.p
           {...fadeInUp}
           transition={{ ...fadeInUp.transition, delay: 0.1 }}
-          className="max-w-[763px] text-center font-opensans text-sm sm:text-[15px] leading-[1.6] text-[#050505] mb-10"
+          className="max-w-[820px] text-center font-opensans text-base sm:text-lg lg:text-[20px] leading-[1.7] text-[#050505] mb-10"
         >
           {about.introParagraph}
         </motion.p>
@@ -69,7 +69,7 @@ export function About() {
           <FigmaBracketButton
             label={about.exploreLabel}
             variant="black"
-            onClick={scrollToWork}
+            onClick={scrollToSolutions}
           />
         </motion.div>
 
@@ -96,7 +96,7 @@ export function About() {
 
                 <div className="relative z-10">
                   <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <h3 className="font-montserrat font-bold text-lg sm:text-[22px] leading-[27px] tracking-[0.18538em] text-black uppercase">
+                    <h3 className="font-montserrat font-bold text-xl sm:text-[24px] leading-[30px] tracking-[0.18538em] text-black uppercase">
                       {service.title}
                     </h3>
                     {service.isPlaceholder && (
@@ -105,7 +105,7 @@ export function About() {
                       </span>
                     )}
                   </div>
-                  <p className="font-opensans font-light text-[14px] leading-[19px] text-black text-justify">
+                  <p className="font-opensans font-normal text-base sm:text-[17px] leading-[1.65] text-black text-justify">
                     {service.description}
                   </p>
                 </div>
@@ -118,7 +118,7 @@ export function About() {
             <motion.div
               {...fadeInUp}
               transition={{ ...fadeInUp.transition, delay: 0.3 }}
-              className="max-w-[500px] mx-auto relative pl-6 sm:pl-10"
+              className="max-w-[540px] mx-auto relative pl-6 sm:pl-10"
             >
               <div
                 aria-hidden="true"
@@ -129,7 +129,7 @@ export function About() {
 
               <div className="relative z-10">
                 <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <h3 className="font-montserrat font-bold text-lg sm:text-[22px] leading-[27px] tracking-[0.18538em] text-black uppercase">
+                  <h3 className="font-montserrat font-bold text-xl sm:text-[24px] leading-[30px] tracking-[0.18538em] text-black uppercase">
                     {bottomService.title}
                   </h3>
                   {bottomService.isPlaceholder && (
@@ -138,40 +138,13 @@ export function About() {
                     </span>
                   )}
                 </div>
-                <p className="font-opensans font-light text-[14px] leading-[19px] text-black text-justify">
+                <p className="font-opensans font-normal text-base sm:text-[17px] leading-[1.65] text-black text-justify">
                   {bottomService.description}
                 </p>
               </div>
             </motion.div>
           )}
         </div>
-
-        {/* Quick Accountant Profile Cards (Ficha Resumo) */}
-        <motion.div
-          {...fadeInUp}
-          className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-16 pt-12 border-t border-black/15"
-        >
-          {about.stats.map((stat) => (
-            <div
-              key={stat.label}
-              className={`p-5 border transition-all duration-300 ${
-                stat.isPlaceholder
-                  ? 'border-dashed border-black/35 bg-white/40'
-                  : 'border-black/20 bg-white/70 shadow-sm'
-              }`}
-            >
-              <p className="font-montserrat font-bold text-[11px] tracking-[0.16em] text-neutral-600 uppercase mb-1.5">
-                {stat.label}
-              </p>
-              <p className="font-raleway font-bold text-lg text-black mb-1">
-                {stat.value}
-              </p>
-              <p className="font-opensans text-xs text-neutral-700 leading-relaxed">
-                {stat.detail}
-              </p>
-            </div>
-          ))}
-        </motion.div>
 
         {/* Ornamental Separator 2 */}
         <FigmaSeparator variant="black" className="mt-16 sm:mt-20 mb-4" />

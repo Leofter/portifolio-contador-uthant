@@ -73,7 +73,7 @@ export function FigmaSeparator({
 
 interface FigmaBracketButtonProps {
   label: string
-  onClick?: () => void
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void
   href?: string
   variant?: 'black' | 'white'
   size?: 'sm' | 'md'

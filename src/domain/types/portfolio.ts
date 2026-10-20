@@ -105,6 +105,12 @@ export interface WorkData {
 
 export type PortfolioFilterCategory = 'all' | 'consultivo' | 'contencioso'
 
+export interface PortfolioRequestOption {
+  id: string
+  label: string
+  defaultMessage: string
+}
+
 export interface PortfolioItem {
   id: string
   title: string
@@ -117,6 +123,8 @@ export interface PortfolioItem {
   gradientClass: string
   patternVariant: 'scales' | 'columns' | 'ledger' | 'shield' | 'contract' | 'court'
   isPlaceholder: boolean
+  defaultRequestMessage: string
+  requestOptions?: PortfolioRequestOption[]
 }
 
 export interface PortfolioSectionData {
@@ -139,6 +147,7 @@ export interface ContactDirectItem {
 export interface ContactData {
   sectionTitle: string
   introText: string
+  highlightBannerText: string
   formPlaceholders: {
     name: string
     email: string

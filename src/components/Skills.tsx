@@ -53,10 +53,16 @@ export function Skills() {
                     >
                       {/* Emblem Box (96x100px in Figma) */}
                       <div
-                        className="w-[92px] h-[96px] flex flex-col items-center justify-center border-2 border-black/80 shadow-[4px_4px_0px_rgba(0,0,0,0.85)] transition-transform duration-300 group-hover:-translate-y-1.5 mb-5 relative overflow-hidden"
+                        className="w-[92px] h-[96px] flex flex-col items-center justify-center border-2 border-black/80 shadow-[4px_4px_0px_rgba(0,0,0,0.85)] transition-transform duration-300 group-hover:-translate-y-1.5 mb-5 relative overflow-hidden px-1"
                         style={{ backgroundColor: skill.accentColor }}
                       >
-                        <span className="font-montserrat font-extrabold text-xl tracking-wider text-white">
+                        <span
+                          className={`font-montserrat font-extrabold text-white leading-none ${
+                            skill.shortCode.length >= 6
+                              ? 'text-[13px] tracking-tight'
+                              : 'text-xl tracking-wider'
+                          }`}
+                        >
                           {skill.shortCode}
                         </span>
                         <span className="mt-1 text-[9px] font-montserrat uppercase tracking-widest text-white/75">

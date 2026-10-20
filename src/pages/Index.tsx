@@ -4,7 +4,6 @@ import { Hero } from '@/components/Hero'
 import { IntroBanner } from '@/components/IntroBanner'
 import { About } from '@/components/About'
 import { Skills } from '@/components/Skills'
-import { Work } from '@/components/Work'
 import { Portfolio } from '@/components/Portfolio'
 import { Contact } from '@/components/Contact'
 
@@ -18,7 +17,6 @@ export default function Index() {
         <IntroBanner />
         <About />
         <Skills />
-        <Work />
         <Portfolio />
         <Contact />
       </main>

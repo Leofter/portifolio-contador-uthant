@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, MouseEvent } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Scale,
@@ -9,7 +9,7 @@ import {
   BookOpen,
 } from 'lucide-react'
 import { portfolioService } from '@/services/portfolioService'
-import { PortfolioFilterCategory } from '@/domain/types/portfolio'
+import { PortfolioFilterCategory, PortfolioItem } from '@/domain/types/portfolio'
 import {
   SectionBoxHeader,
   FigmaBracketButton,
@@ -27,12 +27,62 @@ export function Portfolio() {
   const portfolioData = portfolioService.getPortfolioData()
   const [activeFilter, setActiveFilter] =
     useState<PortfolioFilterCategory>('all')
-  const [selectedItemId, setSelectedItemId] = useState<string | null>('case-2')
+  const [selectedItemId, setSelectedItemId] = useState<string | null>('case-1')
+  const [requestStepItemId, setRequestStepItemId] = useState<string | null>(null)
 
   const filteredItems =
     activeFilter === 'all'
       ? portfolioData.items
       : portfolioData.items.filter((item) => item.category === activeFilter)
+
+  const sendMessageToContact = (messageText: string) => {
+    window.dispatchEvent(
+      new CustomEvent('portfolio:prefill-contact', {
+        detail: { message: messageText },
+      })
+    )
+    const contactEl = document.getElementById('contact')
+    if (contactEl) {
+      contactEl.scrollIntoView({ behavior: 'smooth' })
+    }
+    setTimeout(() => {
+      const textareaEl = document.getElementById(
+        'contact-message'
+      ) as HTMLTextAreaElement | null
+      if (textareaEl) {
+        textareaEl.focus({ preventScroll: true })
+      }
+    }, 650)
+  }
+
+  const handlePrimarySolicitarClick = (
+    e: MouseEvent,
+    item: PortfolioItem
+  ) => {
+    e.stopPropagation()
+    if (item.requestOptions && item.requestOptions.length > 1) {
+      setSelectedItemId(item.id)
+      setRequestStepItemId(item.id)
+    } else {
+      const singleMsg =
+        item.requestOptions?.[0]?.defaultMessage || item.defaultRequestMessage
+      sendMessageToContact(singleMsg)
+    }
+  }
+
+  const handleSecondaryContatoClick = (
+    e: MouseEvent,
+    item: PortfolioItem
+  ) => {
+    e.stopPropagation()
+    sendMessageToContact(item.defaultRequestMessage)
+  }
+
+  const handleOptionSelect = (e: MouseEvent, defaultMessage: string) => {
+    e.stopPropagation()
+    setRequestStepItemId(null)
+    sendMessageToContact(defaultMessage)
+  }
 
   const renderPatternIcon = (
     variant:
@@ -103,7 +153,10 @@ export function Portfolio() {
               return (
                 <button
                   key={filter.id}
-                  onClick={() => setActiveFilter(filter.id)}
+                  onClick={() => {
+                    setActiveFilter(filter.id)
+                    setRequestStepItemId(null)
+                  }}
                   className={cn(
                     'h-[48px] font-montserrat font-semibold text-xs sm:text-[14px] leading-[17px] tracking-wider uppercase flex items-center justify-center transition-colors relative',
                     isActive
@@ -135,6 +188,7 @@ export function Portfolio() {
         <AnimatePresence mode="popLayout">
           {filteredItems.map((item, idx) => {
             const isHighlighted = selectedItemId === item.id
+            const isSelectingOption = requestStepItemId === item.id
 
             return (
               <motion.div
@@ -144,9 +198,13 @@ export function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.45, delay: idx * 0.05 }}
-                onClick={() =>
+                onClick={() => {
+                  if (isSelectingOption) {
+                    setRequestStepItemId(null)
+                    return
+                  }
                   setSelectedItemId(isHighlighted ? null : item.id)
-                }
+                }}
                 className={cn(
                   'relative h-[320px] sm:h-[380px] lg:h-[400px] overflow-hidden border border-white/10 group cursor-pointer bg-gradient-to-br',
                   item.gradientClass
@@ -160,55 +218,81 @@ export function Portfolio() {
                   </span>
                 </div>
 
-                {/* Top-Right Lorem Ipsum Markup Indicator */}
-                {item.isPlaceholder && (
-                  <span className="absolute top-4 right-4 z-20 px-2.5 py-1 text-[10px] font-montserrat font-semibold uppercase tracking-widest bg-black/70 text-gray-300 border border-white/20">
-                    Marcação Lorem Ipsum
-                  </span>
-                )}
-
-                {/* Hover / Active Overlay (Identical to Figma "eatsome." center card) */}
+                {/* Hover / Active Overlay */}
                 <div
                   className={cn(
                     'absolute inset-0 bg-black/85 backdrop-blur-[2px] flex flex-col items-center justify-center p-6 sm:p-8 text-center transition-all duration-300',
-                    isHighlighted
+                    isHighlighted || isSelectingOption
                       ? 'opacity-100'
                       : 'opacity-90 md:opacity-0 md:group-hover:opacity-100'
                   )}
                 >
-                  {/* Italic Category Label ("coded, designed" in Figma) */}
+                  {/* Italic Category Label ("societário, regularização") */}
                   <span className="font-montserrat italic font-semibold text-[11px] leading-[14px] tracking-[0.095em] text-gray-300 mb-2">
                     {item.categoryLabel}
                   </span>
 
-                  {/* Project Title (Montserrat 700, 25px, letter-spacing 0.20538em) */}
+                  {/* Project Title ("ABERTURA & BAIXA") */}
                   <h3 className="font-montserrat font-bold text-lg sm:text-[22px] lg:text-[25px] leading-[1.28] tracking-[0.20538em] text-white uppercase mb-3">
                     {item.title}
                   </h3>
 
-                  {/* Summary & Lorem Ipsum Description */}
-                  <p className="font-montserrat font-medium text-[11px] sm:text-xs leading-[16px] tracking-[-0.015em] text-gray-200 max-w-[330px] mb-2">
-                    {item.summary}
-                  </p>
-                  <p className="font-opensans text-[11px] text-gray-400 max-w-[330px] mb-6">
-                    {item.description}
-                  </p>
+                  {isSelectingOption && item.requestOptions ? (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="flex flex-col items-center w-full"
+                    >
+                      <p className="font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.22em] text-white mb-5">
+                        Solicitar
+                      </p>
 
-                  {/* Action Buttons ("DEMO" / "MORE" with left & right white lines) */}
-                  <div className="flex items-center gap-5">
-                    <FigmaBracketButton
-                      label={item.primaryActionLabel}
-                      variant="white"
-                      size="sm"
-                      href="#contact"
-                    />
-                    <FigmaBracketButton
-                      label={item.secondaryActionLabel}
-                      variant="white"
-                      size="sm"
-                      href="#contact"
-                    />
-                  </div>
+                      <div className="flex flex-wrap items-center justify-center gap-3 max-w-[380px]">
+                        {item.requestOptions.map((option) => (
+                          <FigmaBracketButton
+                            key={option.id}
+                            label={option.label}
+                            variant="white"
+                            size="sm"
+                            onClick={(e) => {
+                              if (e) handleOptionSelect(e, option.defaultMessage)
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <>
+                      {/* Summary & Description */}
+                      <p className="font-montserrat font-medium text-[11px] sm:text-xs leading-[16px] tracking-[-0.015em] text-gray-200 max-w-[330px] mb-2">
+                        {item.summary}
+                      </p>
+                      <p className="font-opensans text-[11px] text-gray-400 max-w-[330px] mb-6">
+                        {item.description}
+                      </p>
+
+                      {/* Action Buttons ("SOLICITAR" / "CONTATO") */}
+                      <div className="flex items-center gap-5">
+                        <FigmaBracketButton
+                          label={item.primaryActionLabel}
+                          variant="white"
+                          size="sm"
+                          onClick={(e) => {
+                            if (e) handlePrimarySolicitarClick(e, item)
+                          }}
+                        />
+                        <FigmaBracketButton
+                          label={item.secondaryActionLabel}
+                          variant="white"
+                          size="sm"
+                          onClick={(e) => {
+                            if (e) handleSecondaryContatoClick(e, item)
+                          }}
+                        />
+                      </div>
+                    </>
+                  )}
                 </div>
               </motion.div>
             )
@@ -217,7 +301,7 @@ export function Portfolio() {
       </div>
 
       {/* ===================================================================
-          SECTION FOOTER ("And many more to come!")
+          SECTION FOOTER
          =================================================================== */}
       <div className="py-10 sm:py-12 px-6 text-center">
         <p className="font-montserrat font-semibold text-base sm:text-[20px] leading-[24px] text-[#FFFBFB]">

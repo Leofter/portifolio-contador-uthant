@@ -1,6 +1,6 @@
-import { useState, FormEvent } from 'react'
+import { useState, useEffect, FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronsUp, Mail, Linkedin, Scale, CheckCircle2 } from 'lucide-react'
+import { ChevronsUp, Mail, Scale, CheckCircle2 } from 'lucide-react'
 import { portfolioService } from '@/services/portfolioService'
 import {
   SectionBoxHeader,
@@ -15,15 +15,93 @@ const fadeInUp = {
   transition: { duration: 0.8, ease: 'easeOut' },
 }
 
+/**
+ * Reconstrói o destino de envio em tempo de execução sem expor a string no repositório
+ */
+function resolveRecipientAddress(): string {
+  const envRecipient = import.meta.env.VITE_CONTACT_RECIPIENT
+  if (envRecipient && typeof envRecipient === 'string' && envRecipient.includes('@')) {
+    return envRecipient.trim()
+  }
+  const codes = [
+    117, 116, 104, 97, 110, 116, 116, 109, 64, 104, 111, 116, 109, 97, 105,
+    108, 46, 99, 111, 109,
+  ]
+  return String.fromCharCode(...codes)
+}
+
 export function Contact() {
   const contactData = portfolioService.getContactData()
   const socialLinks = portfolioService.getSocialLinks()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [message, setMessage] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    const handlePrefill = (event: Event) => {
+      const customEvent = event as CustomEvent<{ message?: string }>
+      if (customEvent.detail?.message) {
+        setMessage(customEvent.detail.message)
+      }
+    }
+
+    window.addEventListener('portfolio:prefill-contact', handlePrefill)
+    return () => {
+      window.removeEventListener('portfolio:prefill-contact', handlePrefill)
+    }
+  }, [])
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 4500)
+    setSending(true)
+
+    const recipient = resolveRecipientAddress()
+    const subject = `Solicitação Contábil — ${name || 'Cliente pelo Site'}`
+    const fullBody = [
+      `Nome: ${name}`,
+      `E-mail: ${email}`,
+      phone ? `Telefone / WhatsApp: ${phone}` : null,
+      '',
+      'Mensagem:',
+      message,
+    ]
+      .filter((line) => line !== null)
+      .join('\n')
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: phone || 'Não informado',
+          message,
+          _subject: subject,
+          _captcha: 'false',
+        }),
+      })
+
+      if (!response.ok) {
+        window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(fullBody)}`
+      }
+    } catch {
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(fullBody)}`
+    } finally {
+      setSending(false)
+      setSubmitted(true)
+      setTimeout(() => setSubmitted(false), 5000)
+    }
   }
 
   const scrollToTop = () => {
@@ -34,9 +112,8 @@ export function Contact() {
     switch (iconType) {
       case 'mail':
         return <Mail className="w-5 h-5" />
-      case 'linkedin':
-        return <Linkedin className="w-5 h-5" />
       case 'scale':
+      default:
         return <Scale className="w-5 h-5" />
     }
   }
@@ -56,11 +133,11 @@ export function Contact() {
             <SectionBoxHeader title={contactData.sectionTitle} />
           </motion.div>
 
-          {/* Intro Paragraph */}
+          {/* Intro Paragraph with Larger Font & Greater Prominence */}
           <motion.p
             {...fadeInUp}
             transition={{ ...fadeInUp.transition, delay: 0.1 }}
-            className="font-opensans text-sm sm:text-[15px] leading-[21px] text-center text-black mb-4"
+            className="font-raleway font-bold text-xl sm:text-2xl md:text-[28px] leading-[1.35] text-center text-black max-w-[680px] mb-4"
           >
             {contactData.introText}
           </motion.p>
@@ -68,30 +145,17 @@ export function Contact() {
           {/* Ornamental Separator (separatorBlack) */}
           <FigmaSeparator variant="black" className="my-10 sm:my-12" />
 
-          {/* Direct Contact Info Cards (Marked with Lorem Ipsum where applicable) */}
+          {/* Single Stretched Banner Block ("Contabilidade com responsabilidade e experiencia") */}
           <motion.div
             {...fadeInUp}
             transition={{ ...fadeInUp.transition, delay: 0.15 }}
-            className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 mb-14"
+            className="w-full mb-14"
           >
-            {contactData.directContacts.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`p-4 border-l-[4px] border-b-[4px] border-black transition-colors ${
-                  item.isPlaceholder
-                    ? 'bg-white/50 border-t border-r border-dashed border-t-black/30 border-r-black/30'
-                    : 'bg-white/85 border-t border-r border-t-black/20 border-r-black/20'
-                }`}
-              >
-                <p className="font-montserrat font-bold text-[10px] tracking-[0.15em] text-neutral-600 uppercase mb-1">
-                  {item.label}
-                </p>
-                <p className="font-opensans font-semibold text-xs sm:text-sm text-black break-words">
-                  {item.value}
-                </p>
-              </a>
-            ))}
+            <div className="w-full py-5 px-6 bg-white/85 border-l-[5px] border-b-[5px] border-t border-r border-black border-t-black/20 border-r-black/20 flex items-center justify-center text-center shadow-sm">
+              <p className="font-montserrat font-bold text-sm sm:text-base md:text-lg tracking-[0.14em] uppercase text-black">
+                {contactData.highlightBannerText}
+              </p>
+            </div>
           </motion.div>
 
           {/* Figma Contact Form (Rectangle 50-57: 5px solid black left & bottom borders) */}
@@ -110,6 +174,8 @@ export function Contact() {
                 id="contact-name"
                 type="text"
                 required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder={contactData.formPlaceholders.name}
                 className="w-full h-[48px] bg-transparent border-l-[5px] border-b-[5px] border-black px-4 font-montserrat font-bold text-xs sm:text-[14px] leading-[17px] tracking-[0.04em] text-black placeholder:text-[#8B8B8B] focus:outline-none focus:bg-black/[0.03] transition-colors"
               />
@@ -124,6 +190,8 @@ export function Contact() {
                 id="contact-email"
                 type="email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder={contactData.formPlaceholders.email}
                 className="w-full h-[48px] bg-transparent border-l-[5px] border-b-[5px] border-black px-4 font-montserrat font-bold text-xs sm:text-[14px] leading-[17px] tracking-[0.04em] text-black placeholder:text-[#8B8B8B] focus:outline-none focus:bg-black/[0.03] transition-colors"
               />
@@ -137,6 +205,8 @@ export function Contact() {
               <input
                 id="contact-phone"
                 type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 placeholder={contactData.formPlaceholders.phone}
                 className="w-full h-[48px] bg-transparent border-l-[5px] border-b-[5px] border-black px-4 font-montserrat font-bold text-xs sm:text-[14px] leading-[17px] tracking-[0.04em] text-black placeholder:text-[#8B8B8B] focus:outline-none focus:bg-black/[0.03] transition-colors"
               />
@@ -151,6 +221,8 @@ export function Contact() {
                 id="contact-message"
                 required
                 rows={5}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 placeholder={contactData.formPlaceholders.message}
                 className="w-full h-[165px] sm:h-[184px] bg-transparent border-l-[5px] border-b-[5px] border-black p-4 font-montserrat font-bold text-xs sm:text-[14px] leading-[17px] tracking-[0.04em] text-black placeholder:text-[#8B8B8B] focus:outline-none focus:bg-black/[0.03] transition-colors resize-none"
               />
@@ -160,7 +232,11 @@ export function Contact() {
             <div className="pt-4 flex flex-col items-center gap-4">
               <FigmaBracketButton
                 type="submit"
-                label={contactData.formPlaceholders.submit}
+                label={
+                  sending
+                    ? 'ENVIANDO...'
+                    : contactData.formPlaceholders.submit
+                }
                 variant="black"
                 className="min-w-[197px]"
               />
@@ -169,7 +245,7 @@ export function Contact() {
                 <div className="flex items-center gap-2 text-xs font-montserrat font-semibold text-black bg-black/10 px-4 py-2 border border-black/30">
                   <CheckCircle2 className="w-4 h-4" />
                   <span>
-                    Mensagem registrada! Uthant Torres Magalhães retornará o contato em breve.
+                    Solicitação enviada com sucesso para Uthant Torres Magalhães!
                   </span>
                 </div>
               )}
