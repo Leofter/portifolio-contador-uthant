@@ -28,10 +28,10 @@ export const uthantPortfolioData: PortfolioDatabase = {
   ],
 
   hero: {
-    greeting: 'Olá, eu sou',
+    greeting: '',
     fullName: 'Uthant Torres Magalhães',
     subtitleBelowName: 'Soluções Contábeis',
-    role: 'Contador • A mais de 30',
+    role: 'Contador • A mais de 30 Anos',
     experienceBadge: '+30 ANOS NA ÁREA',
     currentFirmBadge: '',
     heroImage: '/img/uthant.png',
@@ -42,7 +42,6 @@ export const uthantPortfolioData: PortfolioDatabase = {
   introBanner: {
     title: 'SOLUÇÕES CONTÁBEIS',
     paragraphs: [
-      'Contador com mais de 30 anos na área, formado pela tradicional Fundação Visconde de Cairu, oferecendo assessoria contábil completa, segura e estratégica para empresas e pessoas físicas.',
       'Especialista em Abertura, Baixa e Regularização de Empresas, Folha de Pagamento (eSocial, FGTS e INSS), Apuração de Impostos no Simples Nacional, MEI e Lucro Presumido (na data e em atraso), além de Declarações de IRPF, IRPJ e Parcelamentos.',
     ],
     ctaLabel: 'SAIBA MAIS',
